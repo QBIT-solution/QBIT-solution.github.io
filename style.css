@@ -168,15 +168,15 @@ a:hover {
   animation: crossfade 24s infinite;
 }
 .hero-bg:nth-child(1) {
-  background-image: url("photos/1.jpeg");
+  background-image: url("photos/5.jpeg");
   animation-delay: 0s;
 }
 .hero-bg:nth-child(2) {
-  background-image: url("photos/2.jpeg");
+  background-image: url("photos/10.jpeg");
   animation-delay: 8s;
 }
 .hero-bg:nth-child(3) {
-  background-image: url("photos/3.jpeg");
+  background-image: url("photos/25.jpeg");
   animation-delay: 16s;
 }
 @keyframes crossfade {

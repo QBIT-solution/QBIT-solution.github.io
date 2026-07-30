@@ -24,7 +24,7 @@
     }
 
     // ===== FLIPCLOCK COUNTDOWN =====
-    var weddingDate = moment.tz('2026-08-27 00:00:00', 'Asia/Colombo');
+    var weddingDate = moment.tz('2026-08-27 09:00:00', 'Asia/Colombo');
 
     var clock = $('#clock').FlipClock({
         clockFace: 'DailyCounter',
