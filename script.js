@@ -157,4 +157,109 @@
     fixFlipClock();
     $(window).on('resize', fixFlipClock);
 
+     // ============================================================
+    // WEDDING CARD OVERLAY
+    // ============================================================
+    var overlay = $('#wedding-card-overlay');
+    if (sessionStorage.getItem('weddingCardClosed')) {
+        overlay.addClass('hidden');
+    }
+    overlay.on('click', function(e) {
+        overlay.addClass('hidden');
+        sessionStorage.setItem('weddingCardClosed', 'true');
+    });
+
+    // ============================================================
+    // BACKGROUND MUSIC WITH AUTO-PLAY
+    // ============================================================
+    (function initMusic() {
+        var audio = document.getElementById('bg-music');
+        if (!audio) return;
+
+        var toggleBtn = document.getElementById('music-toggle');
+        var statusText = toggleBtn.querySelector('.music-status');
+
+        // Set initial volume (50%)
+        audio.volume = 0.7;
+
+        // ----- Attempt auto-play on page load -----
+        var autoPlayAttempted = false;
+
+        function tryAutoPlay() {
+            if (autoPlayAttempted) return;
+            autoPlayAttempted = true;
+            audio.play().then(function() {
+                // Auto-play succeeded
+                toggleBtn.classList.add('playing');
+                statusText.textContent = 'On';
+            }).catch(function() {
+                // Auto-play blocked – we'll wait for user interaction
+                console.log('Auto-play blocked. Will start on first user click.');
+                // The first user click anywhere will trigger the start
+            });
+        }
+
+        // Try auto-play immediately (but it may fail)
+        tryAutoPlay();
+
+        // ----- If auto-play failed, start on first user click -----
+        var userInteracted = false;
+        function startOnUserInteraction() {
+            if (userInteracted) return;
+            userInteracted = true;
+            // If audio is still paused, try playing
+            if (audio.paused) {
+                audio.play().then(function() {
+                    toggleBtn.classList.add('playing');
+                    statusText.textContent = 'On';
+                }).catch(function() {});
+            }
+        }
+
+        // Listen for the first click anywhere on the page
+        document.addEventListener('click', function firstClick() {
+            startOnUserInteraction();
+            // Remove listener after first click
+            document.removeEventListener('click', firstClick);
+        }, { once: true });
+
+        // Also listen for the overlay close (which is a click)
+        overlay.on('click', function() {
+            startOnUserInteraction();
+        });
+
+        // ----- Toggle button functionality -----
+        toggleBtn.addEventListener('click', function(e) {
+            e.stopPropagation(); // Prevent the document click listener from firing again
+            if (audio.paused) {
+                audio.play().catch(function(error) {
+                    console.log('Playback failed:', error);
+                    alert('Please click again to play music (browser requires user interaction).');
+                });
+                toggleBtn.classList.add('playing');
+                statusText.textContent = 'On';
+            } else {
+                audio.pause();
+                toggleBtn.classList.remove('playing');
+                statusText.textContent = 'Off';
+            }
+        });
+
+        // If music ends (should loop, but just in case)
+        audio.addEventListener('ended', function() {
+            audio.currentTime = 0;
+            audio.play().catch(function() {});
+        });
+
+    })();
+
+    // ============================================================
+    // STELLAR PARALLAX, FLIPCLOCK, POPUP, ETC. (keep existing code)
+    // ============================================================
+    // ... (your existing JS code here) ...
+
+    // For brevity, I'm not re-copying all the existing JS below,
+    // but you should keep all your other functions (stellar, flipclock, etc.)
+    // and just append the music code above.
+
 })(jQuery);

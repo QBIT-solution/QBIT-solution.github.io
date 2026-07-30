@@ -29,6 +29,19 @@
 </head>
 <body>
 
+    <!-- Background Music -->
+<div id="music-player">
+    <button id="music-toggle" aria-label="Toggle background music">
+        <i class="fa fa-music"></i>
+        <span class="music-status">Play</span>
+    </button>
+    <audio id="bg-music" loop preload="auto">
+        <source src="wedding-music.mp3" type="audio/mpeg">
+        <!-- Fallback to OGG if you have one -->
+        <!-- <source src="wedding-music.ogg" type="audio/ogg"> -->
+    </audio>
+</div>
+
     <!-- ===== WEDDING CARD OVERLAY ===== -->
     <div id="wedding-card-overlay">
         <div class="wedding-card-content">
