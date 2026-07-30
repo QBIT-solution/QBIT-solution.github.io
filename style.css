@@ -863,3 +863,98 @@ textarea {
     70% { box-shadow: 0 0 0 10px rgba(166, 123, 107, 0); }
     100% { box-shadow: 0 0 0 0 rgba(166, 123, 107, 0); }
 }
+
+
+
+
+/* ============================================================
+   INVITATION CARD – Clean preview, popup on click
+   ============================================================ */
+.invitation-wrapper {
+    margin: 2rem 0 2.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.invitation-card {
+    width: 100%;
+    max-width: 560px;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.invitation-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 56px rgba(0, 0, 0, 0.18);
+}
+
+.invitation-card a {
+    display: block;
+    text-decoration: none;
+    width: 100%;
+    height: 100%;
+}
+
+.card-preview {
+    width: 100%;
+    height: 380px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-overlay {
+    background: rgba(0, 0, 0, 0.30);
+    backdrop-filter: blur(2px);
+    padding: 0.8rem 2rem;
+    border-radius: 40px;
+    color: #fff;
+    font-family: 'Sacramento', cursive;
+    font-size: 1.6rem;
+    letter-spacing: 0.1em;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    transition: all 0.3s ease;
+    text-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+}
+
+.invitation-card:hover .card-overlay {
+    background: rgba(0, 0, 0, 0.50);
+    transform: scale(1.06);
+}
+
+.card-preview .open-hint {
+    font-size: 1.4rem;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    .card-preview {
+        height: 320px;
+    }
+    .card-overlay {
+        font-size: 1.4rem;
+        padding: 0.6rem 1.6rem;
+    }
+    .card-preview .open-hint {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .card-preview {
+        height: 280px;
+    }
+    .card-overlay {
+        font-size: 1.1rem;
+        padding: 0.5rem 1.2rem;
+    }
+    .card-preview .open-hint {
+        font-size: 1rem;
+    }
+}

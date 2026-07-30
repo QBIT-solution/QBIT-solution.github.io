@@ -22,7 +22,11 @@
             responsive: true
         });
     }
+    //================invitation============================
+    
 
+//================================
+    
     // ===== FLIPCLOCK COUNTDOWN =====
     var weddingDate = moment.tz('2026-08-27 09:00:00', 'Asia/Colombo');
 
@@ -132,6 +136,13 @@
         });
     });
 
+
+
+
+
+
+
+
     // ===== FLIPCLOCK RESPONSIVE FIX =====
     function fixFlipClock() {
         if ($(window).width() < 480) {
@@ -168,6 +179,15 @@
         overlay.addClass('hidden');
         sessionStorage.setItem('weddingCardClosed', 'true');
     });
+
+    $('.image-popup').magnificPopup({
+    type: 'image',
+    gallery: { enabled: true },   // ← groups all image-popup links
+    closeOnContentClick: true,
+    closeBtnInside: false,
+    mainClass: 'mfp-fade',
+    removalDelay: 300
+});
 
     // ============================================================
     // BACKGROUND MUSIC WITH AUTO-PLAY
@@ -261,5 +281,11 @@
     // For brevity, I'm not re-copying all the existing JS below,
     // but you should keep all your other functions (stellar, flipclock, etc.)
     // and just append the music code above.
+    // ===== INVITATION CARD TOGGLE (Door open/close) =====
+// ===== INVITATION CARD TOGGLE (Door open/close) =====
+
+
+// Optional: close the card if user clicks outside (optional)
+// Not implemented here to keep it simple.
 
 })(jQuery);
