@@ -180,7 +180,7 @@
         var statusText = toggleBtn.querySelector('.music-status');
 
         // Set initial volume (50%)
-        audio.volume = 0.7;
+        audio.volume = 1.0;
 
         // ----- Attempt auto-play on page load -----
         var autoPlayAttempted = false;
