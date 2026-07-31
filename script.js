@@ -273,6 +273,23 @@
 
     })();
 
+// ===== AUTO-PLAY VIDEO WHEN IN VIEW =====
+document.addEventListener('DOMContentLoaded', function() {
+    var video = document.getElementById('highlight-video');
+    if (!video) return;
+
+    var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        });
+    }, { threshold: 0.5 });
+
+    observer.observe(video);
+});
     // ============================================================
     // STELLAR PARALLAX, FLIPCLOCK, POPUP, ETC. (keep existing code)
     // ============================================================
